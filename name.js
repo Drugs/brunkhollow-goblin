@@ -71,6 +71,7 @@ const firstName = [
 "Ruth",
 "Sage",
 "Shae",
+"Skye",
 "Sloane",
 "Tess",
 "Vale",
