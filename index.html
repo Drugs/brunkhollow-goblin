@@ -11,13 +11,56 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="name.js"></script>
-	<style type="text/css">
+		<style type="text/css">
+		@font-face {
+			font-family: 'Western Bang Bang';
+			src: url('WesternBangBang.woff2') format('woff2');
+			font-weight: normal;
+			font-style: normal;
+			font-display: swap;
+		}
+		body{
+			background-image: url(https://cdn.discordapp.com/attachments/804393184506937354/1221301271508553739/1200.png?ex=66121471&is=65ff9f71&hm=bc7cf69e8dda045d5d58d3f2b12dd21ad1adb87b995b5eaaa3543efde1f122ce&);
+			background-color: #f1e1c9f2;
+			background-blend-mode: overlay;
+		}
+		.close{
+			margin-bottom: -1rem;
+		}
+		o{
+			font-family:serif;
+		}
+		o>b{
+			font-size:.8em;
+		}
+		p.brunkhollow{
+			font-size:2.5em;
+		}
+		.brunkhollow{
+			font-family: 'Western Bang Bang';
+			font-weight: normal;
+			font-style: normal;
+		}
+		h1.brunkhollow{
+			font-size:5em;
+		}
+		h2.brunkhollow{
+			font-size:3.5em;
+		}
+		h3.brunkhollow{
+			font-size:3.5em;
+		}
+		button.brunkhollow{
+			font-size:3.5em;
+		}
 		.gobbo{
 			height:400px;
 			overflow:hidden;
 		}
 		.gobbo>img{
 			position:relative;
+			left: 50%;
+			transform: translateX(-50%);
 		}
 		.bi {
 			font-size: 0.9em;
@@ -40,25 +83,15 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="mt-2">Brunkhollow Goblin Generator <img src="gobbo.png" style="vertical-align: bottom;" height="45"></h1>
-		<div class="row mt-3">
-			<div class="col-lg-6">
-				<button type="button" class="btn btn-success" id="rollButton">Create your goblin</button>
-			</div>
+		<div class="d-flex flex-column align-items-center">
+			<h1 class="mt-2 brunkhollow">Brunkhollow</h1>
+			<h2 class="brunkhollow">Goblin Generator <img src="gobbo.png" style="vertical-align: baseline;" height="45"></h2>
+			<button type="button" class="brunkhollow btn btn-success" id="rollButton">Create your goblin</button>
 		</div>
-		<div class="row mt-3 mb-4">
-			<div id="" class="col-lg-3">
-				<h3 onmouseover="showButton('block' , 'firstNameButton')" onmouseout="showButton('none' , 'firstNameButton')"><o id="firstName">First Name</o>
-					<a alt='Reroll!' data-bs-toggle="tooltip" data-bs-title="Click to reroll!" id="firstNameButton" style="display: none; margin-left:1em; cursor:pointer;" onclick="rerollFName()">
-					<i id="dice" class="bi bi-dice-3-fill"></i><i class="bi bi-dice-6-fill"></i>
-				</a>
+		<div class="row justify-content-center">
+				<h3 class="justify-content-center brunkhollow mt-3">
+				<o id="firstName">First Name</o><o>-</o><o id="lastName">Last Name</o>
 				</h3>
-				<h3 onmouseover="showButton('block' , 'lastNameButton')" onmouseout="showButton('none' , 'lastNameButton')"><o id="lastName">Last Name</o>
-				<a alt='Reroll!' data-bs-toggle="tooltip" data-bs-title="Click to reroll!" id="lastNameButton" style="display: none; margin-left:1em; cursor:pointer;" onclick="rerollLName()">
-					<i id="dice" class="bi bi-dice-3-fill"></i><i class="bi bi-dice-6-fill"></i>
-				</a>
-				</h3>
-			</div>
 			<div class="col-lg-6 gobbo">
 				<img id="skin" src="skin/s1.png" height="400" />
 				<img id="eyes" src="eyes/e1.png" style="top:-400px" height="400" />
@@ -66,25 +99,19 @@
 				<img id="head" src="head/h1.png" style="top:-1200px" height="400" />
 			</div>
 		</div>
-	<hr class="mb-4">
-	<p> Created by <b>Baron Samedi</b>, Images by <b>Mutant(Chandler)</b>, Names by <b>HellJack</b></p>
-    
+		<div class="d-flex flex-column align-items-center">
+			<p class="brunkhollow close">Created by Baron Samedi</p>
+			<p class="brunkhollow close">Images by Mutant(Chandler)</p>
+			<p class="brunkhollow close">Names by HellJack</p>
+		</div>
 	</div>
 	<script>
-		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-		document.getElementById("dice").style.zIndex = "0";// Starting tooltips
 		const gobboImage = [1,2,3,4,5,6,7,8,9,10];
 		function getRandomElement(array) {
 		  return array[Math.floor(Math.random() * array.length)];
 		}
-		
-		rollGoblin(); // Roll all tables when the page loads
-		rollImage();
-		function showButton(arg , div) {
-			const button = document.getElementById(div);
-			button.style.display = arg;
-		}
+		rollGoblin();
+		rollImage();		// Roll all tables when the page loads
 		function rollImage() {
 			let skin = "s"+getRandomElement(gobboImage);
 			let eyes = "e"+getRandomElement(gobboImage);
@@ -109,10 +136,11 @@
 			let GlastName = getRandomElement(lastName);
 			document.getElementById("lastName").innerHTML = GlastName;
 		}
-	const rollButton = document.getElementById("rollButton")
-	rollButton.addEventListener("click", rollGoblin);
-	rollButton.addEventListener("click", rollImage);
-	</script>
+		
+    const rollButton = document.getElementById("rollButton")
+    rollButton.addEventListener("click", rollGoblin);
+    rollButton.addEventListener("click", rollImage);
+  </script>
  
 </body>
 </html>
