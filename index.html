@@ -19,6 +19,10 @@
 			font-style: normal;
 			font-display: swap;
 		}
+		.IOSfix{
+			background-color: #fff4e5c2;
+			height: 100%;
+		}
 		body{
 			background-image: url(map.png);
 			background-color: #f1e1c9f2;
@@ -82,7 +86,7 @@
 	</style>
 </head>
 <body>
-	<div class="container">
+	<div id="IOS" class="container">
 		<div class="d-flex flex-column align-items-center">
 			<h1 class="mt-2 brunkhollow">Brunkhollow</h1>
 			<h2 class="brunkhollow">Goblin Generator <img src="gobbo.png" style="vertical-align: baseline;" height="45"></h2>
@@ -99,13 +103,28 @@
 				<img id="head" src="head/h1.png" style="top:-1200px" height="400" />
 			</div>
 		</div>
-		<div class="d-flex flex-column align-items-center">
+		<div class="pb-3 d-flex flex-column align-items-center overflow-hidden" >
 			<p class="brunkhollow close">Created by Baron Samedi</p>
 			<p class="brunkhollow close">Images by Mutant(Chandler)</p>
 			<p class="brunkhollow close">Names by HellJack</p>
 		</div>
 	</div>
 	<script>
+		function iOS() {
+		  return [
+			'iPad Simulator',
+			'iPhone Simulator',
+			'iPod Simulator',
+			'iPad',
+			'iPhone',
+			'iPod'
+		  ].includes(navigator.platform)
+		  // iPad on iOS 13 detection
+		  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+		}
+		if(iOS()){
+			document.getElementById("IOS").classList.add("IOSfix");
+		}
 		const gobboSkin = 29;
 		const gobboEyes = 25;
 		const gobboClothes = 26;
