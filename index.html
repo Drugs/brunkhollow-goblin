@@ -106,17 +106,28 @@
 		</div>
 	</div>
 	<script>
-		const gobboImage = [1,2,3,4,5,6,7,8,9,10];
+		const gobboSkin = 29;
+		const gobboEyes = 25;
+		const gobboClothes = 26;
+		const gobboHead = 31;
 		function getRandomElement(array) {
 		  return array[Math.floor(Math.random() * array.length)];
+		}
+		function getRandomGobboPiece(number) {
+			let inter = (Math.round(Math.random() * number));
+			if(inter < 1 || inter > number){
+				return 1;
+			}else{
+				return inter;
+			}
 		}
 		rollGoblin();
 		rollImage();		// Roll all tables when the page loads
 		function rollImage() {
-			let skin = "s"+getRandomElement(gobboImage);
-			let eyes = "e"+getRandomElement(gobboImage);
-			let clothes = "c"+getRandomElement(gobboImage);
-			let head = "h"+getRandomElement(gobboImage);
+			let skin = "s"+getRandomGobboPiece(gobboSkin);
+			let eyes = "e"+getRandomGobboPiece(gobboEyes);
+			let clothes = "c"+getRandomGobboPiece(gobboClothes);
+			let head = "h"+getRandomGobboPiece(gobboHead);
 			document.getElementById("skin").src = "skin/"+skin+".png";
 			document.getElementById("eyes").src = "eyes/"+eyes+".png";
 			document.getElementById("clothes").src = "clothes/"+clothes+".png";
